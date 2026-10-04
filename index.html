@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#020617" />
+  <title>中亞12天團行程天氣 · 2026年10月</title>
+  
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; 
+      margin: 0; 
+      padding: 16px; 
+      background: #020617; 
+      color: #e5e7eb; 
+      padding-bottom: 40px;
+    }
+    
+    .container { max-width: 800px; margin: 0 auto; }
+    
+    h1 { text-align: center; margin: 10px 0 5px; font-size: 1.45rem; } 
+    h2 { text-align: center; font-size: 0.95rem; font-weight: 500; color: #9ca3af; margin: 0 0 20px; }
+    
+    /* Top Clocks Dashboard */
+    .clocks-bar {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 24px;
+      background: #0f172a; padding: 12px; border-radius: 12px; border: 1px solid #1e293b;
+    }
+    .clock-item { display: flex; align-items: center; gap: 6px; font-size: 0.95rem; font-weight: 600; color: #cbd5e1; }
+    .clock-item span.time { font-variant-numeric: tabular-nums; color: #fff; }
+    .clock-item span.flag { font-size: 1.2rem; }
+
+    .controls { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+    .refresh-btn { 
+      padding: 8px 18px; border: 0; border-radius: 999px; color: #fff; background: #1d4ed8; 
+      font-size: .9rem; cursor: pointer; transition: background 0.2s;
+    }
+    .refresh-btn:hover { background: #2563eb; }
+    
+    .updated { text-align: center; color: #6b7280; font-size: .78rem; margin-top: -10px; margin-bottom: 20px; min-height: 15px;}
+    
+    .timeline { display: flex; flex-direction: column; gap: 12px; }
+    
+    /* Day Cards */
+    .day-card { 
+      background: #0f172a; border: 1px solid #1e293b; border-radius: 16px; 
+      overflow: hidden; transition: border-color 0.2s, background 0.2s;
+    }
+    .day-card:hover { border-color: #334155; background: #152036; }
+    
+    @keyframes bluePulse {
+      0% { box-shadow: 0 0 8px rgba(59,130,246,0.3); }
+      50% { box-shadow: 0 0 22px rgba(59,130,246,0.7); }
+      100% { box-shadow: 0 0 8px rgba(59,130,246,0.3); }
+    }
+    
+    .day-card.today { 
+      border-color: #3b82f6; 
+      animation: bluePulse 2s infinite; 
+    }
+    .day-card.today .day-badge { background: #3b82f6; color: #fff; }
+    
+    .card-click-area {
+      cursor: pointer;
+      display: block;
+    }
+
+    /* Header (Date & Title) */
+    .card-header { padding: 14px 16px 8px; display: flex; justify-content: space-between; align-items: flex-start; }
+    .header-left { display: flex; flex-direction: column; gap: 6px; }
+    .date-row { display: flex; align-items: center; gap: 8px; }
+    .day-badge { background: #334155; color: #e2e8f0; font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
+    .date-text { color: #94a3b8; font-size: 0.85rem; font-weight: 500; }
+    .route-title { font-size: 1.05rem; font-weight: 600; }
+    
+    .expand-icon { font-size: 1.2rem; color: #64748b; transition: transform 0.2s; }
+    .day-card.open .expand-icon { transform: rotate(180deg); }
+
+    /* Weather Mini Table */
+    .weather-table-wrap { padding: 0 16px 14px; overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.95rem; } 
+    th, td { text-align: left; padding: 12px 4px; border-bottom: 1px solid #1e293b; vertical-align: middle; white-space: nowrap; } 
+    th { color: #64748b; font-size: 0.75rem; font-weight: 500; border-bottom: 2px solid #1e293b; text-transform: uppercase; } 
+    tbody tr:last-child td { border-bottom: 0; }
+    
+    .loc-cell { display: flex; flex-direction: column; gap: 2px; }
+    .loc-zh { font-weight: 600; font-size: 0.95rem; color: #f8fafc; }
+    .loc-en { font-size: 0.8rem; color: #94a3b8; }
+    
+    /* Normal weight as requested */
+    .clock-cell { font-size: 0.95rem; font-weight: 400; color: #e2e8f0; font-variant-numeric: tabular-nums; }
+    .temp-cell { font-size: 0.95rem; font-weight: 400; color: #f8fafc; }
+    .w-icon-cell { font-size: 1.4xl; line-height: 1; text-align: center; }
+
+    .rain-tag { display: inline-block; padding: 3px 8px; border-radius: 6px; font-size: .8rem; font-weight: 500; }
+
+    /* Expanded Details Area */
+    .card-exp-wrapper { display: none; padding: 0 16px 16px; border-top: 1px dashed #334155; margin-top: 4px; padding-top: 16px; }
+    .day-card.open .card-exp-wrapper { display: block; }
+    
+    .desc-text { color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; margin-bottom: 16px; }
+    
+    /* Map Container - Increased height to 360px for mobile visibility */
+    .map-container {
+      width: 100%; height: 360px; border-radius: 12px; background: #e5e5e5;
+      border: 1px solid #334155; z-index: 1; overflow: hidden;
+    }
+
+    .spinner { 
+      border: 2px solid rgba(148,163,184,.3); border-top-color: #3b82f6; 
+      border-radius: 50%; width: 14px; height: 14px; display: inline-block; 
+      animation: spin .8s linear infinite; 
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>中亞12天團行程天氣</h1>
+    <h2>烏茲別克 · 吉爾吉斯 · 哈薩克｜8–19/10/2026</h2>
+    
+    <div class="clocks-bar">
+      <div class="clock-item"><span class="flag">🇭🇰</span> HKT: <span class="time" id="clk-hkg">--:--</span></div>
+      <div class="clock-item"><span class="flag">🇺🇿</span> UZB: <span class="time" id="clk-uzb">--:--</span></div>
+      <div class="clock-item"><span class="flag">🇰🇬</span> KGZ/KAZ: <span class="time" id="clk-kgz">--:--</span></div>
+    </div>
+
+    <div class="controls">
+      <button class="refresh-btn" type="button" onclick="loadWeather()">更新天氣 Refresh</button>
+    </div>
+    <p id="updated" class="updated"></p>
+    
+    <section id="timeline" class="timeline"></section>
+  </main>
+  
+  <script>
+    const weatherCities = {
+      'HKG': { tz: 'Asia/Hong_Kong', lat: 22.3193, lon: 114.1694, flag: '🇭🇰' },
+      'TAS': { tz: 'Asia/Tashkent', lat: 41.2995, lon: 69.2401, flag: '🇺🇿' },
+      'BUK': { tz: 'Asia/Tashkent', lat: 39.7747, lon: 64.4286, flag: '🇺🇿' },
+      'SAM': { tz: 'Asia/Tashkent', lat: 39.6542, lon: 66.9597, flag: '🇺🇿' },
+      'BIS': { tz: 'Asia/Bishkek', lat: 42.8746, lon: 74.5698, flag: '🇰🇬' },
+      'ISS': { tz: 'Asia/Bishkek', lat: 42.6482, lon: 77.0818, flag: '🇰🇬' },
+      'ALM': { tz: 'Asia/Almaty', lat: 43.2389, lon: 76.8897, flag: '🇰🇿' },
+      'CHA': { tz: 'Asia/Almaty', lat: 43.3516, lon: 79.0831, flag: '🇰🇿' }
+    };
+
+    // Note: mapRoute uses EXACT names so Google Maps can find the real attractions and draw routes between them.
+    const itinerary = [
+      { 
+        day: 1, date: '2026-10-08', title: '香港 ✈️ 塔什干', flight: true,
+        locations: [{id: 'HKG', zh: '香港', en: 'Hong Kong'}, {id: 'TAS', zh: '塔什干', en: 'Tashkent'}], 
+        desc: '早上6:30香港國際機場集合，中國國際航空航班起飛，北京轉機，晚上7:40抵達塔什干。',
+        mapRoute: ["Tashkent International Airport"]
+      },
+      { 
+        day: 2, date: '2026-10-09', title: '塔什干市內觀光', 
+        locations: [{id: 'TAS', zh: '塔什干', en: 'Tashkent'}], 
+        desc: '參觀獨立廣場、乘坐藝術氣息濃厚的塔什干地鐵。遊覽巴力罕建築群、哈斯特伊瑪目清真寺、帖木兒廣場及市集。',
+        mapRoute: ["Independence Square, Tashkent", "Khazrati Imam, Tashkent", "Chorsu Bazaar, Tashkent", "Amir Temur Square, Tashkent"]
+      },
+      { 
+        day: 3, date: '2026-10-10', title: '塔什干 🚄 布哈拉', 
+        locations: [{id: 'TAS', zh: '塔什干', en: 'Tashkent'}, {id: 'BUK', zh: '布哈拉', en: 'Bukhara'}], 
+        desc: '乘高速火車 (約4小時) 前往世界文化遺產布哈拉。參觀波依卡龍建築群、雅克城堡，晚上欣賞傳統舞蹈。',
+        mapRoute: ["Tashkent Railway Station", "Poi Kalyan, Bukhara", "Ark Fortress, Bukhara"]
+      },
+      { 
+        day: 4, date: '2026-10-11', title: '布哈拉 🚄 撒馬爾罕', 
+        locations: [{id: 'BUK', zh: '布哈拉', en: 'Bukhara'}, {id: 'SAM', zh: '撒馬爾罕', en: 'Samarkand'}], 
+        desc: '參觀博洛府清真寺、中亞最古老的伊斯萬薩曼尼陵墓。隨後乘火車往「東方羅馬」撒馬爾罕，觀賞雷吉斯坦廣場夜間燈光秀。',
+        mapRoute: ["Bolo Hauz Mosque, Bukhara", "Ismail Samani Mausoleum", "Registan Square, Samarkand"]
+      },
+      { 
+        day: 5, date: '2026-10-12', title: '撒馬爾罕 🚄 塔什干', 
+        locations: [{id: 'SAM', zh: '撒馬爾罕', en: 'Samarkand'}, {id: 'TAS', zh: '塔什干', en: 'Tashkent'}], 
+        desc: '遊覽雷吉斯坦廣場、古爾埃米爾陵墓、比比哈籃清真寺、兀魯伯天文台等。乘高速火車返回塔什干。',
+        mapRoute: ["Gur Emir Mausoleum, Samarkand", "Bibi Khanym Mosque, Samarkand", "Shah-i-Zinda, Samarkand", "Ulugbek Observatory, Samarkand", "Tashkent Railway Station"]
+      },
+      { 
+        day: 6, date: '2026-10-13', title: '塔什干 ✈ 比什凱克', flight: true,
+        locations: [{id: 'TAS', zh: '塔什干', en: 'Tashkent'}, {id: 'BIS', zh: '比什凱克', en: 'Bishkek'}], 
+        desc: '早上自由活動，午餐後飛往吉爾吉斯首都比什凱克 (飛行約1小時10分鐘)，欣賞天山山麓美景。',
+        mapRoute: ["Manas International Airport, Bishkek"]
+      },
+      { 
+        day: 7, date: '2026-10-14', title: '比什凱克 🚌 伊塞克湖', 
+        locations: [{id: 'BIS', zh: '比什凱克', en: 'Bishkek'}, {id: 'ISS', zh: '伊塞克湖', en: 'Issyk Kul'}], 
+        desc: '參觀11世紀的布蘭那塔。隨後前往匯集雪山水、終年不結冰的世界第二大高山湖——伊塞克湖。',
+        mapRoute: ["Bishkek", "Burana Tower, Kyrgyzstan", "Cholpon-Ata, Issyk Kul"]
+      },
+      { 
+        day: 8, date: '2026-10-15', title: '伊塞克湖 🚌 阿拉阿恰 🚌 比什凱克', 
+        locations: [{id: 'ISS', zh: '伊塞克湖', en: 'Issyk Kul'}, {id: 'BIS', zh: '比什凱克', en: 'Bishkek'}], 
+        desc: '參觀佔地42公頃的露天岩石畫博物館。前往終年積雪的阿拉阿恰國家公園 (車程約5.5小時)，隨後返回比什凱克。',
+        mapRoute: ["Open Air Petroglyphs, Cholpon-Ata", "Ala Archa National Park", "Bishkek"]
+      },
+      { 
+        day: 9, date: '2026-10-16', title: '比什凱克 🚌 阿拉木圖', 
+        locations: [{id: 'BIS', zh: '比什凱克', en: 'Bishkek'}, {id: 'ALM', zh: '阿拉木圖', en: 'Almaty'}], 
+        desc: '市內觀光：勝利廣場、阿拉土廣場、橡樹公園。下午乘車前往哈薩克舊都、蘋果故鄉阿拉木圖 (車程約4小時)。',
+        mapRoute: ["Ala-Too Square, Bishkek", "Victory Square, Bishkek", "Almaty"]
+      },
+      { 
+        day: 10, date: '2026-10-17', title: '阿拉木圖 🚌 查恩峽谷 🚌 阿拉木圖', 
+        locations: [{id: 'ALM', zh: '阿拉木圖', en: 'Almaty'}, {id: 'CHA', zh: '查恩峽谷', en: 'Charyn Canyon'}], 
+        desc: '乘車前往壯麗的查恩峽谷 (車程約3小時)。步行探訪怪異砂岩雕塑「谷中的城堡」(約400梯級)，後返回阿拉木圖。',
+        mapRoute: ["Almaty", "Charyn Canyon, Kazakhstan", "Almaty"]
+      },
+      { 
+        day: 11, date: '2026-10-18', title: '阿拉木圖市內 ✈️ 香港', flight: true,
+        locations: [{id: 'ALM', zh: '阿拉木圖', en: 'Almaty'}, {id: 'HKG', zh: '香港', en: 'Hong Kong'}], 
+        desc: '參觀世界第二高木製教堂澤尼科夫教堂。乘纜車上科克托別山俯瞰全景。晚上9:50乘搭中國國際航空經北京返港。',
+        mapRoute: ["Zenkov Cathedral, Almaty", "Kok Tobe, Almaty", "Almaty International Airport"]
+      },
+      { 
+        day: 12, date: '2026-10-19', title: '抵達香港', flight: true,
+        locations: [{id: 'HKG', zh: '香港', en: 'Hong Kong'}], 
+        desc: '上午11:50 抵達香港國際機場，結束12天中亞之旅。',
+        mapRoute: ["Hong Kong International Airport"]
+      },
+    ];
+
+    const icons = {
+      0: '☀️', 1: '🌤️', 2: '⛅', 3: '☁️', 45: '🌫️', 48: '🌫️', 
+      51: '🌦️', 53: '🌦️', 55: '🌧️', 56: '🌧', 57: '🌧', 61: '🌧️', 
+      63: '🌧️', 65: '🌧️', 66: '🌧️', 67: '🌧', 71: '❄️', 73: '❄️', 
+      75: '❄️', 77: '❄️', 80: '🌦', 81: '🌧️', 82: '🌧', 85: '❄️', 
+      86: '❄️', 95: '⛈️', 96: '⛈', 99: '⛈️'
+    };
+
+    let weatherCache = {}; 
+    let mapInstances = {};
+
+    function updateClocks() {
+      const now = new Date();
+      document.getElementById('clk-hkg').textContent = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Hong_Kong', hour: '2-digit', minute: '2-digit', hour12: false });
+      document.getElementById('clk-uzb').textContent = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Tashkent', hour: '2-digit', minute: '2-digit', hour12: false });
+      document.getElementById('clk-kgz').textContent = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Bishkek', hour: '2-digit', minute: '2-digit', hour12: false });
+
+      itinerary.forEach((day, idx) => {
+        day.locations.forEach(loc => {
+          const tz = weatherCities[loc.id].tz;
+          const timeStr = now.toLocaleTimeString('en-US', { timeZone: tz, hour: '2-digit', minute: '2-digit', hour12: false });
+          const el = document.getElementById(`clk-${idx}-${loc.id}`);
+          if(el) {
+            const flag = weatherCities[loc.id].flag;
+            el.innerHTML = `<span style="font-size:1.1em; margin-right:4px;">${flag}</span>${timeStr}`;
+          }
+        });
+      });
+    }
+
+    function getRainHtml(prob) {
+      if (prob == null) return '<span class="rain-tag" style="background:#1e293b; color:#64748b;">--</span>';
+      if (prob <= 30) return `<span class="rain-tag" style="background:rgba(22,163,74,.15); color:#4ade80;">${prob}%</span>`;
+      if (prob <= 60) return `<span class="rain-tag" style="background:rgba(234,179,8,.15); color:#facc15;">${prob}%</span>`;
+      return `<span class="rain-tag" style="background:rgba(239,68,68,.15); color:#fca5a5;">${prob}%</span>`;
+    }
+
+    function renderTimeline() {
+      const container = document.getElementById('timeline');
+      
+      let todayStr = new Date().toLocaleDateString('en-CA', {timeZone: 'Asia/Hong_Kong'}); 
+
+      const html = itinerary.map((day, idx) => {
+        const isToday = day.date === todayStr;
+        const dateObj = new Date(day.date);
+        const dateDisplay = `${dateObj.getDate()}/${dateObj.getMonth()+1}`;
+
+        const tableRows = day.locations.map(loc => `
+          <tr>
+            <td>
+              <div class="loc-cell">
+                <span class="loc-zh">${loc.zh}</span>
+                <span class="loc-en">${loc.en}</span>
+              </div>
+            </td>
+            <td class="clock-cell" id="clk-${idx}-${loc.id}">--:--</td>
+            <td class="w-icon-cell" id="w-icon-${idx}-${loc.id}"><span class="spinner"></span></td>
+            <td class="temp-cell" id="w-temp-${idx}-${loc.id}">--</td>
+            <td class="temp-cell" id="w-feels-${idx}-${loc.id}">--</td>
+            <td id="w-rain-${idx}-${loc.id}">--</td>
+          </tr>
+        `).join('');
+
+        return `
+          <article class="day-card ${isToday ? 'today' : ''}" id="card-${idx}">
+            <div class="card-click-area" onclick="toggleCard(${idx})">
+              
+              <div class="card-header">
+                <div class="header-left">
+                  <div class="date-row">
+                    <span class="day-badge">Day ${day.day}</span>
+                    <span class="date-text">${dateDisplay} ${isToday ? '(Today)' : ''}</span>
+                  </div>
+                  <div class="route-title">${day.title}</div>
+                </div>
+                <div class="expand-icon">▾</div>
+              </div>
+
+              <div class="weather-table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Location</th>
+                      <th>Time</th>
+                      <th></th>
+                      <th>Temp</th>
+                      <th>Feels</th>
+                      <th>Rain</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${tableRows}
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+
+            <div class="card-exp-wrapper">
+              <div class="desc-text">${day.desc}</div>
+              <div class="map-container" id="map-${idx}"></div>
+            </div>
+          </article>
+        `;
+      }).join('');
+      
+      container.innerHTML = html;
+      updateClocks(); 
+    }
+
+    function toggleCard(idx) {
+      const card = document.getElementById(`card-${idx}`);
+      const isOpen = card.classList.contains('open');
+      
+      if (!isOpen) {
+        card.classList.add('open');
+        initMap(idx);
+      } else {
+        card.classList.remove('open');
+      }
+    }
+
+    function initMap(idx) {
+      const mapEl = document.getElementById(`map-${idx}`);
+      if (!mapEl || mapInstances[idx]) return;
+
+      const day = itinerary[idx];
+      const route = day.mapRoute;
+      if (!route || route.length === 0) return;
+
+      let url = "";
+      
+      if (day.flight || route.length === 1) {
+        url = `https://maps.google.com/maps?q=${encodeURIComponent(route[route.length - 1])}&z=13&output=embed`;
+      } else {
+        const saddr = encodeURIComponent(route[0]);
+        let daddr = encodeURIComponent(route[1]);
+        
+        for (let i = 2; i < route.length; i++) {
+          daddr += `+to:${encodeURIComponent(route[i])}`; 
+        }
+        url = `https://maps.google.com/maps?saddr=${saddr}&daddr=${daddr}&output=embed`;
+      }
+
+      mapEl.innerHTML = `<iframe width="100%" height="100%" frameborder="0" style="border:0;" src="${url}" allowfullscreen></iframe>`;
+      mapInstances[idx] = true;
+    }
+
+    async function loadWeather() {
+      const neededSet = new Set();
+      itinerary.forEach(d => d.locations.forEach(l => neededSet.add(l.id)));
+      
+      try {
+        for (const cityId of neededSet) {
+          if (!weatherCache[cityId]) {
+            const city = weatherCities[cityId];
+            const u = new URL('https://api.open-meteo.com/v1/forecast');
+            u.searchParams.set('latitude', city.lat);
+            u.searchParams.set('longitude', city.lon);
+            u.searchParams.set('daily', 'weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_probability_max');
+            u.searchParams.set('timezone', city.tz);
+            u.searchParams.set('forecast_days', '16');
+
+            const r = await fetch(u);
+            if (r.ok) {
+              const data = await r.json();
+              weatherCache[cityId] = data.daily;
+            }
+          }
+        }
+
+        itinerary.forEach((day, idx) => {
+          day.locations.forEach(loc => {
+            const wData = weatherCache[loc.id];
+            const iEl = document.getElementById(`w-icon-${idx}-${loc.id}`);
+            const tEl = document.getElementById(`w-temp-${idx}-${loc.id}`);
+            const fEl = document.getElementById(`w-feels-${idx}-${loc.id}`);
+            const rEl = document.getElementById(`w-rain-${idx}-${loc.id}`);
+
+            if (wData) {
+              const dateIdx = wData.time.indexOf(day.date);
+              if (dateIdx !== -1) {
+                const wCode = wData.weathercode[dateIdx];
+                const tMax = Math.round(wData.temperature_2m_max[dateIdx]);
+                const tMin = Math.round(wData.temperature_2m_min[dateIdx]);
+                const fMax = Math.round(wData.apparent_temperature_max[dateIdx]);
+                const fMin = Math.round(wData.apparent_temperature_min[dateIdx]);
+                const rain = wData.precipitation_probability_max[dateIdx];
+
+                iEl.textContent = icons[wCode] || '🌡️';
+                tEl.textContent = `${tMin}° – ${tMax}°C`;
+                fEl.textContent = `${fMin}° – ${fMax}°C`;
+                rEl.innerHTML = getRainHtml(rain);
+              } else {
+                iEl.innerHTML = `<span style="font-size:0.75rem; color:#64748b;">N/A</span>`;
+                tEl.innerHTML = `<span style="font-size:0.8rem; color:#64748b;">> 16 Days</span>`;
+                fEl.innerHTML = `-`;
+                rEl.innerHTML = `-`;
+              }
+            } else {
+              iEl.textContent = '⚠️';
+              tEl.innerHTML = `<span style="font-size:0.8rem; color:#ef4444;">Error</span>`;
+              fEl.innerHTML = `-`;
+              rEl.innerHTML = `-`;
+            }
+          });
+        });
+
+        document.getElementById('updated').textContent = 'Last refreshed: ' + new Date().toLocaleTimeString();
+      } catch (e) {
+        document.getElementById('updated').textContent = 'Failed to load weather data.';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderTimeline();
+      loadWeather();
+      setInterval(updateClocks, 1000);
+    });
+  </script>
+</body>
+</html>
