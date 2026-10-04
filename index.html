@@ -7,6 +7,7 @@
   <title>中亞12天團行程天氣 · 2026年10月</title>
   
   <style>
+    /* STREAMING_CHUNK: Base styling and typography */
     :root { color-scheme: dark; }
     * { box-sizing: border-box; }
     
@@ -21,30 +22,30 @@
     
     .container { max-width: 800px; margin: 0 auto; }
     
-    h1 { text-align: center; margin: 10px 0 5px; font-size: 1.35rem; } 
-    h2 { text-align: center; font-size: 0.9rem; font-weight: 500; color: #9ca3af; margin: 0 0 16px; }
+    h1 { text-align: center; margin: 10px 0 5px; font-size: 1.4rem; } 
+    h2 { text-align: center; font-size: 0.95rem; font-weight: 500; color: #9ca3af; margin: 0 0 16px; }
     
-    /* Top Clocks Dashboard */
+    /* STREAMING_CHUNK: Top Clocks and Dashboard Controls */
     .clocks-bar {
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 18px;
-      background: #0f172a; padding: 10px; border-radius: 12px; border: 1px solid #1e293b;
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 18px;
+      background: #0f172a; padding: 12px; border-radius: 12px; border: 1px solid #1e293b;
     }
-    .clock-item { display: flex; align-items: center; gap: 5px; font-size: 0.95rem; font-weight: 600; color: #cbd5e1; }
+    .clock-item { display: flex; align-items: center; gap: 6px; font-size: 0.95rem; font-weight: 600; color: #cbd5e1; }
     .clock-item span.time { font-variant-numeric: tabular-nums; color: #fff; }
-    .clock-item span.flag { font-size: 1.1rem; }
+    .clock-item span.flag { font-size: 1.15rem; }
 
-    .controls { display: flex; justify-content: center; gap: 10px; margin-bottom: 16px; }
+    .controls { display: flex; justify-content: center; margin-bottom: 16px; }
     .refresh-btn { 
-      padding: 8px 18px; border: 0; border-radius: 999px; color: #fff; background: #1d4ed8; 
-      font-size: .9rem; cursor: pointer; transition: background 0.2s;
+      padding: 10px 20px; border: 0; border-radius: 999px; color: #fff; background: #1d4ed8; 
+      font-size: 0.95rem; font-weight: 500; cursor: pointer; transition: background 0.2s;
     }
     .refresh-btn:hover { background: #2563eb; }
     
-    .updated { text-align: center; color: #6b7280; font-size: .8rem; margin-top: -8px; margin-bottom: 16px; min-height: 15px;}
+    .updated { text-align: center; color: #6b7280; font-size: 0.8rem; margin-top: -8px; margin-bottom: 16px; min-height: 16px;}
     
     .timeline { display: flex; flex-direction: column; gap: 12px; }
     
-    /* Day Cards */
+    /* STREAMING_CHUNK: Day Cards and Animations */
     .day-card { 
       background: #0f172a; border: 1px solid #1e293b; border-radius: 14px; 
       overflow: hidden; transition: border-color 0.2s, background 0.2s;
@@ -63,56 +64,51 @@
     }
     .day-card.today .day-badge { background: #3b82f6; color: #fff; }
     
-    .card-click-area {
-      cursor: pointer;
-      display: block;
-    }
+    .card-click-area { cursor: pointer; display: block; }
 
-    /* Header (Date & Title) */
-    .card-header { padding: 14px 16px 8px; display: flex; justify-content: space-between; align-items: flex-start; }
-    .header-left { display: flex; flex-direction: column; gap: 4px; }
+    .card-header { padding: 14px 14px 8px; display: flex; justify-content: space-between; align-items: flex-start; }
+    .header-left { display: flex; flex-direction: column; gap: 6px; }
     .date-row { display: flex; align-items: center; gap: 8px; }
-    .day-badge { background: #334155; color: #e2e8f0; font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
+    .day-badge { background: #334155; color: #e2e8f0; font-size: 0.75rem; font-weight: 700; padding: 3px 8px; border-radius: 999px; }
     .date-text { color: #94a3b8; font-size: 0.85rem; font-weight: 500; }
-    .route-title { font-size: 1.05rem; font-weight: 600; color: #f8fafc; }
+    .route-title { font-size: 1.1rem; font-weight: 600; color: #f8fafc; }
     
     .expand-icon { font-size: 1.2rem; color: #64748b; transition: transform 0.2s; padding-top: 2px; }
     .day-card.open .expand-icon { transform: rotate(180deg); }
 
-    /* Weather Mini Table */
-    .weather-table-wrap { padding: 0 12px 12px; width: 100%; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; table-layout: fixed; } 
-    th, td { text-align: left; padding: 10px 6px; border-bottom: 1px solid #1e293b; vertical-align: middle; overflow: hidden; } 
+    /* STREAMING_CHUNK: Weather Table Layout (Responsive, no-scroll) */
+    .weather-table-wrap { padding: 0 12px 14px; width: 100%; }
+    table { width: 100%; border-collapse: collapse; table-layout: fixed; } 
+    th, td { text-align: left; padding: 10px 4px; border-bottom: 1px solid #1e293b; vertical-align: middle; overflow: hidden; } 
     
-    /* Column widths */
-    th:nth-child(1), td:nth-child(1) { width: 26%; }
-    th:nth-child(2), td:nth-child(2) { width: 15%; }
-    th:nth-child(3), td:nth-child(3) { width: 12%; text-align: center; }
-    th:nth-child(4), td:nth-child(4) { width: 16%; }
-    th:nth-child(5), td:nth-child(5) { width: 16%; }
-    th:nth-child(6), td:nth-child(6) { width: 15%; }
+    /* Strict column widths to prevent horizontal overflow */
+    th:nth-child(1), td:nth-child(1) { width: 25%; } /* Loc */
+    th:nth-child(2), td:nth-child(2) { width: 14%; } /* Time */
+    th:nth-child(3), td:nth-child(3) { width: 11%; text-align: center; } /* Icon */
+    th:nth-child(4), td:nth-child(4) { width: 19%; } /* Temp */
+    th:nth-child(5), td:nth-child(5) { width: 18%; } /* Feels */
+    th:nth-child(6), td:nth-child(6) { width: 13%; } /* Rain */
 
     th { color: #64748b; font-size: 0.75rem; font-weight: 500; border-bottom: 2px solid #1e293b; text-transform: uppercase; } 
     tbody tr:last-child td { border-bottom: 0; }
     
     .loc-cell { display: flex; flex-direction: column; min-width: 0; }
-    .loc-zh { font-weight: 600; font-size: 0.92rem; color: #f8fafc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .loc-en { font-size: 0.78rem; color: #94a3b8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .loc-zh { font-weight: 600; font-size: 0.95rem; color: #f8fafc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .loc-en { font-size: 0.75rem; color: #94a3b8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     
     .clock-cell { font-size: 0.9rem; font-weight: 400; color: #cbd5e1; font-variant-numeric: tabular-nums; white-space: nowrap; }
-    .temp-cell { font-size: 0.9rem; font-weight: 400; color: #e2e8f0; white-space: nowrap; }
+    .temp-cell { font-size: 0.95rem; font-weight: 400; color: #e2e8f0; white-space: nowrap; }
     .feels-cell { font-size: 0.9rem; font-weight: 400; color: #94a3b8; white-space: nowrap; }
-    .w-icon-cell { font-size: 1.35rem; line-height: 1; text-align: center; }
+    .w-icon-cell { font-size: 1.4rem; line-height: 1; text-align: center; }
 
-    .rain-tag { display: inline-block; padding: 3px 6px; border-radius: 4px; font-size: 0.8rem; font-weight: 500; white-space: nowrap; }
+    .rain-tag { display: inline-block; padding: 3px 5px; border-radius: 4px; font-size: 0.8rem; font-weight: 500; white-space: nowrap; }
 
-    /* Expanded Details Area */
+    /* STREAMING_CHUNK: Expanded Detail Areas and Maps */
     .card-exp-wrapper { display: none; padding: 0 16px 16px; border-top: 1px dashed #334155; margin-top: 2px; padding-top: 14px; }
     .day-card.open .card-exp-wrapper { display: block; }
     
     .desc-text { color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; margin-bottom: 14px; }
     
-    /* Map Container */
     .map-container {
       width: 100%; height: 360px; border-radius: 10px; background: #e5e5e5;
       border: 1px solid #334155; z-index: 1; overflow: hidden;
@@ -127,6 +123,7 @@
   </style>
 </head>
 <body>
+  <!-- STREAMING_CHUNK: Main body structure -->
   <main class="container">
     <h1>中亞12天團行程天氣</h1>
     <h2>烏茲別克 · 吉爾吉斯 · 哈薩克｜8–19/10/2026</h2>
@@ -146,17 +143,20 @@
   </main>
   
   <script>
+    /* STREAMING_CHUNK: City data configurations (Added Ala Archa) */
     const weatherCities = {
-      'HKG': { tz: 'Asia/Hong_Kong', lat: 22.3193, lon: 114.1694, flag: '🇭🇰' },
-      'TAS': { tz: 'Asia/Tashkent', lat: 41.2995, lon: 69.2401, flag: '🇺🇿' },
-      'BUK': { tz: 'Asia/Tashkent', lat: 39.7747, lon: 64.4286, flag: '🇺🇿' },
-      'SAM': { tz: 'Asia/Tashkent', lat: 39.6542, lon: 66.9597, flag: '🇺🇿' },
-      'BIS': { tz: 'Asia/Bishkek', lat: 42.8746, lon: 74.5698, flag: '🇰🇬' },
-      'ISS': { tz: 'Asia/Bishkek', lat: 42.6482, lon: 77.0818, flag: '🇰🇬' },
-      'ALM': { tz: 'Asia/Almaty', lat: 43.2389, lon: 76.8897, flag: '🇰🇿' },
-      'CHA': { tz: 'Asia/Almaty', lat: 43.3516, lon: 79.0831, flag: '🇰🇿' }
+      'HKG': { tz: 'Asia/Hong_Kong', lat: 22.3193, lon: 114.1694 },
+      'TAS': { tz: 'Asia/Tashkent', lat: 41.2995, lon: 69.2401 },
+      'BUK': { tz: 'Asia/Tashkent', lat: 39.7747, lon: 64.4286 },
+      'SAM': { tz: 'Asia/Tashkent', lat: 39.6542, lon: 66.9597 },
+      'BIS': { tz: 'Asia/Bishkek', lat: 42.8746, lon: 74.5698 },
+      'ISS': { tz: 'Asia/Bishkek', lat: 42.6482, lon: 77.0818 },
+      'ALA': { tz: 'Asia/Bishkek', lat: 42.5624, lon: 74.4825 },
+      'ALM': { tz: 'Asia/Almaty', lat: 43.2389, lon: 76.8897 },
+      'CHA': { tz: 'Asia/Almaty', lat: 43.3516, lon: 79.0831 }
     };
 
+    /* STREAMING_CHUNK: Itinerary configuration (Flags in headers, clean rows) */
     const itinerary = [
       { 
         day: 1, date: '2026-10-08', title: '香港🇭🇰 ✈️ 塔什干🇺🇿', flight: true,
@@ -202,7 +202,7 @@
       },
       { 
         day: 8, date: '2026-10-15', title: '伊塞克湖🇰🇬 🚌 阿拉阿恰🇰🇬 🚌 比什凱克🇰🇬', 
-        locations: [{id: 'ISS', zh: '伊塞克湖', en: 'Issyk Kul'}, {id: 'BIS', zh: '比什凱克', en: 'Bishkek'}], 
+        locations: [{id: 'ISS', zh: '伊塞克湖', en: 'Issyk Kul'}, {id: 'ALA', zh: '阿拉阿恰', en: 'Ala Archa'}, {id: 'BIS', zh: '比什凱克', en: 'Bishkek'}], 
         desc: '參觀佔地42公頃的露天岩石畫博物館。前往終年積雪的阿拉阿恰國家公園 (車程約5.5小時)，隨後返回比什凱克。',
         mapRoute: ["Open Air Petroglyphs, Cholpon-Ata", "Ala Archa National Park", "Bishkek"]
       },
@@ -232,10 +232,11 @@
       },
     ];
 
+    /* STREAMING_CHUNK: Constants and Helper Functions */
     const icons = {
-      0: '☀️️', 1: '🌤️', 2: '⛅', 3: '☁️', 45: '🌫️', 48: '🌫️', 
-      51: '🌦️', 53: '🌦️', 55: '🌧', 56: '🌧', 57: '🌧', 61: '🌧️', 
-      63: '🌧️', 65: '🌧️️', 66: '🌧️', 67: '🌧', 71: '❄️', 73: '❄️', 
+      0: '☀️', 1: '🌤️', 2: '⛅', 3: '☁️', 45: '🌫️', 48: '🌫️', 
+      51: '🌦️', 53: '🌦️', 55: '🌧️️', 56: '🌧', 57: '🌧', 61: '🌧️', 
+      63: '🌧️', 65: '🌧️', 66: '🌧️', 67: '🌧', 71: '❄️', 73: '❄️', 
       75: '❄️', 77: '❄️', 80: '🌦', 81: '🌧', 82: '🌧', 85: '❄️', 
       86: '❄️', 95: '⛈️', 96: '⛈', 99: '⛈'
     };
@@ -254,9 +255,7 @@
           const tz = weatherCities[loc.id].tz;
           const timeStr = now.toLocaleTimeString('en-US', { timeZone: tz, hour: '2-digit', minute: '2-digit', hour12: false });
           const el = document.getElementById(`clk-${idx}-${loc.id}`);
-          if(el) {
-            el.textContent = timeStr;
-          }
+          if(el) { el.textContent = timeStr; }
         });
       });
     }
@@ -268,9 +267,11 @@
       return `<span class="rain-tag" style="background:rgba(239,68,68,.15); color:#fca5a5;">${prob}%</span>`;
     }
 
+    /* STREAMING_CHUNK: DOM Rendering (Production real date only) */
     function renderTimeline() {
       const container = document.getElementById('timeline');
       
+      // Strict real date setting
       let todayStr = new Date().toLocaleDateString('en-CA', {timeZone: 'Asia/Hong_Kong'}); 
 
       const html = itinerary.map((day, idx) => {
@@ -315,7 +316,7 @@
                 <table>
                   <thead>
                     <tr>
-                      <th>Location</th>
+                      <th>Loc</th>
                       <th>Time</th>
                       <th></th>
                       <th>Temp</th>
@@ -343,6 +344,7 @@
       updateClocks(); 
     }
 
+    /* STREAMING_CHUNK: Map and Expanding functionality */
     function toggleCard(idx) {
       const card = document.getElementById(`card-${idx}`);
       const isOpen = card.classList.contains('open');
@@ -381,6 +383,7 @@
       mapInstances[idx] = true;
     }
 
+    /* STREAMING_CHUNK: API Fetching */
     async function loadWeather() {
       const neededSet = new Set();
       itinerary.forEach(d => d.locations.forEach(l => neededSet.add(l.id)));
@@ -434,7 +437,7 @@
               }
             } else {
               iEl.textContent = '⚠️';
-              tEl.textContent = `Error`;
+              tEl.textContent = `Err`;
               fEl.textContent = `-`;
               rEl.innerHTML = `-`;
             }
@@ -455,3 +458,4 @@
   </script>
 </body>
 </html>
+```eof
