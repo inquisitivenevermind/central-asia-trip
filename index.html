@@ -13,7 +13,7 @@
     body { 
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; 
       margin: 0; 
-      padding: 16px; 
+      padding: 12px; 
       background: #020617; 
       color: #e5e7eb; 
       padding-bottom: 40px;
@@ -21,40 +21,40 @@
     
     .container { max-width: 800px; margin: 0 auto; }
     
-    h1 { text-align: center; margin: 10px 0 5px; font-size: 1.45rem; } 
-    h2 { text-align: center; font-size: 0.95rem; font-weight: 500; color: #9ca3af; margin: 0 0 20px; }
+    h1 { text-align: center; margin: 10px 0 5px; font-size: 1.35rem; } 
+    h2 { text-align: center; font-size: 0.9rem; font-weight: 500; color: #9ca3af; margin: 0 0 16px; }
     
     /* Top Clocks Dashboard */
     .clocks-bar {
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 24px;
-      background: #0f172a; padding: 12px; border-radius: 12px; border: 1px solid #1e293b;
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 18px;
+      background: #0f172a; padding: 10px; border-radius: 12px; border: 1px solid #1e293b;
     }
-    .clock-item { display: flex; align-items: center; gap: 6px; font-size: 0.95rem; font-weight: 600; color: #cbd5e1; }
+    .clock-item { display: flex; align-items: center; gap: 5px; font-size: 0.9rem; font-weight: 600; color: #cbd5e1; }
     .clock-item span.time { font-variant-numeric: tabular-nums; color: #fff; }
-    .clock-item span.flag { font-size: 1.2rem; }
+    .clock-item span.flag { font-size: 1.1rem; }
 
-    .controls { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+    .controls { display: flex; justify-content: center; gap: 10px; margin-bottom: 16px; }
     .refresh-btn { 
       padding: 8px 18px; border: 0; border-radius: 999px; color: #fff; background: #1d4ed8; 
-      font-size: .9rem; cursor: pointer; transition: background 0.2s;
+      font-size: .85rem; cursor: pointer; transition: background 0.2s;
     }
     .refresh-btn:hover { background: #2563eb; }
     
-    .updated { text-align: center; color: #6b7280; font-size: .78rem; margin-top: -10px; margin-bottom: 20px; min-height: 15px;}
+    .updated { text-align: center; color: #6b7280; font-size: .75rem; margin-top: -8px; margin-bottom: 16px; min-height: 15px;}
     
-    .timeline { display: flex; flex-direction: column; gap: 12px; }
+    .timeline { display: flex; flex-direction: column; gap: 10px; }
     
     /* Day Cards */
     .day-card { 
-      background: #0f172a; border: 1px solid #1e293b; border-radius: 16px; 
+      background: #0f172a; border: 1px solid #1e293b; border-radius: 14px; 
       overflow: hidden; transition: border-color 0.2s, background 0.2s;
     }
     .day-card:hover { border-color: #334155; background: #152036; }
     
     @keyframes bluePulse {
-      0% { box-shadow: 0 0 8px rgba(59,130,246,0.3); }
-      50% { box-shadow: 0 0 22px rgba(59,130,246,0.7); }
-      100% { box-shadow: 0 0 8px rgba(59,130,246,0.3); }
+      0% { box-shadow: 0 0 6px rgba(59,130,246,0.3); }
+      50% { box-shadow: 0 0 18px rgba(59,130,246,0.7); }
+      100% { box-shadow: 0 0 6px rgba(59,130,246,0.3); }
     }
     
     .day-card.today { 
@@ -69,49 +69,58 @@
     }
 
     /* Header (Date & Title) */
-    .card-header { padding: 14px 16px 8px; display: flex; justify-content: space-between; align-items: flex-start; }
-    .header-left { display: flex; flex-direction: column; gap: 6px; }
+    .card-header { padding: 12px 14px 6px; display: flex; justify-content: space-between; align-items: flex-start; }
+    .header-left { display: flex; flex-direction: column; gap: 4px; }
     .date-row { display: flex; align-items: center; gap: 8px; }
-    .day-badge { background: #334155; color: #e2e8f0; font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
-    .date-text { color: #94a3b8; font-size: 0.85rem; font-weight: 500; }
-    .route-title { font-size: 1.05rem; font-weight: 600; }
+    .day-badge { background: #334155; color: #e2e8f0; font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; }
+    .date-text { color: #94a3b8; font-size: 0.8rem; font-weight: 500; }
+    .route-title { font-size: 1rem; font-weight: 600; }
     
-    .expand-icon { font-size: 1.2rem; color: #64748b; transition: transform 0.2s; }
+    .expand-icon { font-size: 1.1rem; color: #64748b; transition: transform 0.2s; padding-top: 2px; }
     .day-card.open .expand-icon { transform: rotate(180deg); }
 
-    /* Weather Mini Table */
-    .weather-table-wrap { padding: 0 16px 14px; overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.95rem; } 
-    th, td { text-align: left; padding: 12px 4px; border-bottom: 1px solid #1e293b; vertical-align: middle; white-space: nowrap; } 
-    th { color: #64748b; font-size: 0.75rem; font-weight: 500; border-bottom: 2px solid #1e293b; text-transform: uppercase; } 
+    /* Weather Mini Table - Designed to fit mobile screens without scrolling */
+    .weather-table-wrap { padding: 0 10px 10px; width: 100%; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; table-layout: fixed; } 
+    th, td { text-align: left; padding: 8px 3px; border-bottom: 1px solid #1e293b; vertical-align: middle; overflow: hidden; } 
+    
+    /* Column widths optimized for no-scroll mobile view */
+    th:nth-child(1), td:nth-child(1) { width: 34%; }
+    th:nth-child(2), td:nth-child(2) { width: 16%; }
+    th:nth-child(3), td:nth-child(3) { width: 12%; text-align: center; }
+    th:nth-child(4), td:nth-child(4) { width: 19%; }
+    th:nth-child(5), td:nth-child(5) { width: 19%; }
+
+    th { color: #64748b; font-size: 0.7rem; font-weight: 500; border-bottom: 2px solid #1e293b; text-transform: uppercase; } 
     tbody tr:last-child td { border-bottom: 0; }
     
-    .loc-cell { display: flex; flex-direction: column; gap: 2px; }
-    .loc-zh { font-weight: 600; font-size: 0.95rem; color: #f8fafc; }
-    .loc-en { font-size: 0.8rem; color: #94a3b8; }
+    .loc-cell { display: flex; align-items: center; gap: 5px; }
+    .loc-flag { font-size: 1.05rem; flex-shrink: 0; }
+    .loc-text-group { display: flex; flex-direction: column; min-width: 0; }
+    .loc-zh { font-weight: 600; font-size: 0.88rem; color: #f8fafc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .loc-en { font-size: 0.73rem; color: #94a3b8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     
-    /* Normal weight as requested */
-    .clock-cell { font-size: 0.95rem; font-weight: 400; color: #e2e8f0; font-variant-numeric: tabular-nums; }
-    .temp-cell { font-size: 0.95rem; font-weight: 400; color: #f8fafc; }
-    .w-icon-cell { font-size: 1.4xl; line-height: 1; text-align: center; }
+    .clock-cell { font-size: 0.85rem; font-weight: 400; color: #cbd5e1; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .temp-cell { font-size: 0.83rem; font-weight: 400; color: #e2e8f0; white-space: nowrap; }
+    .w-icon-cell { font-size: 1.2rem; line-height: 1; text-align: center; }
 
-    .rain-tag { display: inline-block; padding: 3px 8px; border-radius: 6px; font-size: .8rem; font-weight: 500; }
+    .rain-tag { display: inline-block; padding: 2px 5px; border-radius: 4px; font-size: 0.72rem; font-weight: 500; white-space: nowrap; }
 
     /* Expanded Details Area */
-    .card-exp-wrapper { display: none; padding: 0 16px 16px; border-top: 1px dashed #334155; margin-top: 4px; padding-top: 16px; }
+    .card-exp-wrapper { display: none; padding: 0 14px 14px; border-top: 1px dashed #334155; margin-top: 2px; padding-top: 12px; }
     .day-card.open .card-exp-wrapper { display: block; }
     
-    .desc-text { color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; margin-bottom: 16px; }
+    .desc-text { color: #cbd5e1; font-size: 0.9rem; line-height: 1.5; margin-bottom: 14px; }
     
-    /* Map Container - Increased height to 360px for mobile visibility */
+    /* Map Container */
     .map-container {
-      width: 100%; height: 360px; border-radius: 12px; background: #e5e5e5;
+      width: 100%; height: 340px; border-radius: 10px; background: #e5e5e5;
       border: 1px solid #334155; z-index: 1; overflow: hidden;
     }
 
     .spinner { 
       border: 2px solid rgba(148,163,184,.3); border-top-color: #3b82f6; 
-      border-radius: 50%; width: 14px; height: 14px; display: inline-block; 
+      border-radius: 50%; width: 12px; height: 12px; display: inline-block; 
       animation: spin .8s linear infinite; 
     }
     @keyframes spin { to { transform: rotate(360deg); } }
@@ -148,7 +157,6 @@
       'CHA': { tz: 'Asia/Almaty', lat: 43.3516, lon: 79.0831, flag: '🇰🇿' }
     };
 
-    // Note: mapRoute uses EXACT names so Google Maps can find the real attractions and draw routes between them.
     const itinerary = [
       { 
         day: 1, date: '2026-10-08', title: '香港 ✈️ 塔什干', flight: true,
@@ -228,8 +236,8 @@
       0: '☀️', 1: '🌤️', 2: '⛅', 3: '☁️', 45: '🌫️', 48: '🌫️', 
       51: '🌦️', 53: '🌦️', 55: '🌧️', 56: '🌧', 57: '🌧', 61: '🌧️', 
       63: '🌧️', 65: '🌧️', 66: '🌧️', 67: '🌧', 71: '❄️', 73: '❄️', 
-      75: '❄️', 77: '❄️', 80: '🌦', 81: '🌧️', 82: '🌧', 85: '❄️', 
-      86: '❄️', 95: '⛈️', 96: '⛈', 99: '⛈️'
+      75: '❄️', 77: '❄️', 80: '🌦', 81: '🌧️️', 82: '🌧', 85: '❄️', 
+      86: '❄️', 95: '⛈️', 96: '⛈', 99: '⛈️️'
     };
 
     let weatherCache = {}; 
@@ -247,8 +255,7 @@
           const timeStr = now.toLocaleTimeString('en-US', { timeZone: tz, hour: '2-digit', minute: '2-digit', hour12: false });
           const el = document.getElementById(`clk-${idx}-${loc.id}`);
           if(el) {
-            const flag = weatherCities[loc.id].flag;
-            el.innerHTML = `<span style="font-size:1.1em; margin-right:4px;">${flag}</span>${timeStr}`;
+            el.textContent = timeStr;
           }
         });
       });
@@ -271,21 +278,26 @@
         const dateObj = new Date(day.date);
         const dateDisplay = `${dateObj.getDate()}/${dateObj.getMonth()+1}`;
 
-        const tableRows = day.locations.map(loc => `
-          <tr>
-            <td>
-              <div class="loc-cell">
-                <span class="loc-zh">${loc.zh}</span>
-                <span class="loc-en">${loc.en}</span>
-              </div>
-            </td>
-            <td class="clock-cell" id="clk-${idx}-${loc.id}">--:--</td>
-            <td class="w-icon-cell" id="w-icon-${idx}-${loc.id}"><span class="spinner"></span></td>
-            <td class="temp-cell" id="w-temp-${idx}-${loc.id}">--</td>
-            <td class="temp-cell" id="w-feels-${idx}-${loc.id}">--</td>
-            <td id="w-rain-${idx}-${loc.id}">--</td>
-          </tr>
-        `).join('');
+        const tableRows = day.locations.map(loc => {
+          const flag = weatherCities[loc.id].flag;
+          return `
+            <tr>
+              <td>
+                <div class="loc-cell">
+                  <span class="loc-flag">${flag}</span>
+                  <div class="loc-text-group">
+                    <span class="loc-zh">${loc.zh}</span>
+                    <span class="loc-en">${loc.en}</span>
+                  </div>
+                </div>
+              </td>
+              <td class="clock-cell" id="clk-${idx}-${loc.id}">--:--</td>
+              <td class="w-icon-cell" id="w-icon-${idx}-${loc.id}"><span class="spinner"></span></td>
+              <td class="temp-cell" id="w-temp-${idx}-${loc.id}">--</td>
+              <td id="w-rain-${idx}-${loc.id}">--</td>
+            </tr>
+          `;
+        }).join('');
 
         return `
           <article class="day-card ${isToday ? 'today' : ''}" id="card-${idx}">
@@ -309,8 +321,7 @@
                       <th>Location</th>
                       <th>Time</th>
                       <th></th>
-                      <th>Temp</th>
-                      <th>Feels</th>
+                      <th>Temp / Feels</th>
                       <th>Rain</th>
                     </tr>
                   </thead>
@@ -400,7 +411,6 @@
             const wData = weatherCache[loc.id];
             const iEl = document.getElementById(`w-icon-${idx}-${loc.id}`);
             const tEl = document.getElementById(`w-temp-${idx}-${loc.id}`);
-            const fEl = document.getElementById(`w-feels-${idx}-${loc.id}`);
             const rEl = document.getElementById(`w-rain-${idx}-${loc.id}`);
 
             if (wData) {
@@ -414,27 +424,24 @@
                 const rain = wData.precipitation_probability_max[dateIdx];
 
                 iEl.textContent = icons[wCode] || '🌡️';
-                tEl.textContent = `${tMin}° – ${tMax}°C`;
-                fEl.textContent = `${fMin}° – ${fMax}°C`;
+                tEl.innerHTML = `${tMin}°~${tMax}°C<br><span style="font-size:0.75rem; color:#94a3b8;">體感 ${fMin}°~${fMax}°</span>`;
                 rEl.innerHTML = getRainHtml(rain);
               } else {
-                iEl.innerHTML = `<span style="font-size:0.75rem; color:#64748b;">N/A</span>`;
-                tEl.innerHTML = `<span style="font-size:0.8rem; color:#64748b;">> 16 Days</span>`;
-                fEl.innerHTML = `-`;
+                iEl.innerHTML = `<span style="font-size:0.7rem; color:#64748b;">N/A</span>`;
+                tEl.innerHTML = `<span style="font-size:0.75rem; color:#64748b;">>16天</span>`;
                 rEl.innerHTML = `-`;
               }
             } else {
               iEl.textContent = '⚠️';
-              tEl.innerHTML = `<span style="font-size:0.8rem; color:#ef4444;">Error</span>`;
-              fEl.innerHTML = `-`;
+              tEl.innerHTML = `<span style="font-size:0.75rem; color:#ef4444;">Error</span>`;
               rEl.innerHTML = `-`;
             }
           });
         });
 
-        document.getElementById('updated').textContent = 'Last refreshed: ' + new Date().toLocaleTimeString();
+        document.getElementById('updated').textContent = '最後更新: ' + new Date().toLocaleTimeString();
       } catch (e) {
-        document.getElementById('updated').textContent = 'Failed to load weather data.';
+        document.getElementById('updated').textContent = '天氣資料載入失敗';
       }
     }
 
@@ -446,3 +453,4 @@
   </script>
 </body>
 </html>
+```eof
