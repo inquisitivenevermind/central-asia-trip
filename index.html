@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#020617" />
   <title>中亞12天團行程天氣 · 2026年10月</title>
   
@@ -29,20 +29,20 @@
       display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 18px;
       background: #0f172a; padding: 10px; border-radius: 12px; border: 1px solid #1e293b;
     }
-    .clock-item { display: flex; align-items: center; gap: 5px; font-size: 0.9rem; font-weight: 600; color: #cbd5e1; }
+    .clock-item { display: flex; align-items: center; gap: 5px; font-size: 0.95rem; font-weight: 600; color: #cbd5e1; }
     .clock-item span.time { font-variant-numeric: tabular-nums; color: #fff; }
     .clock-item span.flag { font-size: 1.1rem; }
 
     .controls { display: flex; justify-content: center; gap: 10px; margin-bottom: 16px; }
     .refresh-btn { 
       padding: 8px 18px; border: 0; border-radius: 999px; color: #fff; background: #1d4ed8; 
-      font-size: .85rem; cursor: pointer; transition: background 0.2s;
+      font-size: .9rem; cursor: pointer; transition: background 0.2s;
     }
     .refresh-btn:hover { background: #2563eb; }
     
-    .updated { text-align: center; color: #6b7280; font-size: .75rem; margin-top: -8px; margin-bottom: 16px; min-height: 15px;}
+    .updated { text-align: center; color: #6b7280; font-size: .8rem; margin-top: -8px; margin-bottom: 16px; min-height: 15px;}
     
-    .timeline { display: flex; flex-direction: column; gap: 10px; }
+    .timeline { display: flex; flex-direction: column; gap: 12px; }
     
     /* Day Cards */
     .day-card { 
@@ -69,58 +69,58 @@
     }
 
     /* Header (Date & Title) */
-    .card-header { padding: 12px 14px 6px; display: flex; justify-content: space-between; align-items: flex-start; }
+    .card-header { padding: 14px 16px 8px; display: flex; justify-content: space-between; align-items: flex-start; }
     .header-left { display: flex; flex-direction: column; gap: 4px; }
     .date-row { display: flex; align-items: center; gap: 8px; }
-    .day-badge { background: #334155; color: #e2e8f0; font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; }
-    .date-text { color: #94a3b8; font-size: 0.8rem; font-weight: 500; }
-    .route-title { font-size: 1rem; font-weight: 600; }
+    .day-badge { background: #334155; color: #e2e8f0; font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
+    .date-text { color: #94a3b8; font-size: 0.85rem; font-weight: 500; }
+    .route-title { font-size: 1.05rem; font-weight: 600; color: #f8fafc; }
     
-    .expand-icon { font-size: 1.1rem; color: #64748b; transition: transform 0.2s; padding-top: 2px; }
+    .expand-icon { font-size: 1.2rem; color: #64748b; transition: transform 0.2s; padding-top: 2px; }
     .day-card.open .expand-icon { transform: rotate(180deg); }
 
-    /* Weather Mini Table - Designed to fit mobile screens without scrolling */
-    .weather-table-wrap { padding: 0 10px 10px; width: 100%; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; table-layout: fixed; } 
-    th, td { text-align: left; padding: 8px 3px; border-bottom: 1px solid #1e293b; vertical-align: middle; overflow: hidden; } 
+    /* Weather Mini Table */
+    .weather-table-wrap { padding: 0 12px 12px; width: 100%; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; table-layout: fixed; } 
+    th, td { text-align: left; padding: 10px 6px; border-bottom: 1px solid #1e293b; vertical-align: middle; overflow: hidden; } 
     
-    /* Column widths optimized for no-scroll mobile view */
-    th:nth-child(1), td:nth-child(1) { width: 34%; }
-    th:nth-child(2), td:nth-child(2) { width: 16%; }
+    /* Column widths */
+    th:nth-child(1), td:nth-child(1) { width: 26%; }
+    th:nth-child(2), td:nth-child(2) { width: 15%; }
     th:nth-child(3), td:nth-child(3) { width: 12%; text-align: center; }
-    th:nth-child(4), td:nth-child(4) { width: 19%; }
-    th:nth-child(5), td:nth-child(5) { width: 19%; }
+    th:nth-child(4), td:nth-child(4) { width: 16%; }
+    th:nth-child(5), td:nth-child(5) { width: 16%; }
+    th:nth-child(6), td:nth-child(6) { width: 15%; }
 
-    th { color: #64748b; font-size: 0.7rem; font-weight: 500; border-bottom: 2px solid #1e293b; text-transform: uppercase; } 
+    th { color: #64748b; font-size: 0.75rem; font-weight: 500; border-bottom: 2px solid #1e293b; text-transform: uppercase; } 
     tbody tr:last-child td { border-bottom: 0; }
     
-    .loc-cell { display: flex; align-items: center; gap: 5px; }
-    .loc-flag { font-size: 1.05rem; flex-shrink: 0; }
-    .loc-text-group { display: flex; flex-direction: column; min-width: 0; }
-    .loc-zh { font-weight: 600; font-size: 0.88rem; color: #f8fafc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .loc-en { font-size: 0.73rem; color: #94a3b8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .loc-cell { display: flex; flex-direction: column; min-width: 0; }
+    .loc-zh { font-weight: 600; font-size: 0.92rem; color: #f8fafc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .loc-en { font-size: 0.78rem; color: #94a3b8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     
-    .clock-cell { font-size: 0.85rem; font-weight: 400; color: #cbd5e1; font-variant-numeric: tabular-nums; white-space: nowrap; }
-    .temp-cell { font-size: 0.83rem; font-weight: 400; color: #e2e8f0; white-space: nowrap; }
-    .w-icon-cell { font-size: 1.2rem; line-height: 1; text-align: center; }
+    .clock-cell { font-size: 0.9rem; font-weight: 400; color: #cbd5e1; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .temp-cell { font-size: 0.9rem; font-weight: 400; color: #e2e8f0; white-space: nowrap; }
+    .feels-cell { font-size: 0.9rem; font-weight: 400; color: #94a3b8; white-space: nowrap; }
+    .w-icon-cell { font-size: 1.35rem; line-height: 1; text-align: center; }
 
-    .rain-tag { display: inline-block; padding: 2px 5px; border-radius: 4px; font-size: 0.72rem; font-weight: 500; white-space: nowrap; }
+    .rain-tag { display: inline-block; padding: 3px 6px; border-radius: 4px; font-size: 0.8rem; font-weight: 500; white-space: nowrap; }
 
     /* Expanded Details Area */
-    .card-exp-wrapper { display: none; padding: 0 14px 14px; border-top: 1px dashed #334155; margin-top: 2px; padding-top: 12px; }
+    .card-exp-wrapper { display: none; padding: 0 16px 16px; border-top: 1px dashed #334155; margin-top: 2px; padding-top: 14px; }
     .day-card.open .card-exp-wrapper { display: block; }
     
-    .desc-text { color: #cbd5e1; font-size: 0.9rem; line-height: 1.5; margin-bottom: 14px; }
+    .desc-text { color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; margin-bottom: 14px; }
     
     /* Map Container */
     .map-container {
-      width: 100%; height: 340px; border-radius: 10px; background: #e5e5e5;
+      width: 100%; height: 360px; border-radius: 10px; background: #e5e5e5;
       border: 1px solid #334155; z-index: 1; overflow: hidden;
     }
 
     .spinner { 
       border: 2px solid rgba(148,163,184,.3); border-top-color: #3b82f6; 
-      border-radius: 50%; width: 12px; height: 12px; display: inline-block; 
+      border-radius: 50%; width: 14px; height: 14px; display: inline-block; 
       animation: spin .8s linear infinite; 
     }
     @keyframes spin { to { transform: rotate(360deg); } }
@@ -159,73 +159,73 @@
 
     const itinerary = [
       { 
-        day: 1, date: '2026-10-08', title: '香港 ✈️ 塔什干', flight: true,
+        day: 1, date: '2026-10-08', title: '香港🇭🇰 ✈️ 塔什干🇺🇿', flight: true,
         locations: [{id: 'HKG', zh: '香港', en: 'Hong Kong'}, {id: 'TAS', zh: '塔什干', en: 'Tashkent'}], 
         desc: '早上6:30香港國際機場集合，中國國際航空航班起飛，北京轉機，晚上7:40抵達塔什干。',
         mapRoute: ["Tashkent International Airport"]
       },
       { 
-        day: 2, date: '2026-10-09', title: '塔什干市內觀光', 
+        day: 2, date: '2026-10-09', title: '塔什干🇺🇿 市內觀光', 
         locations: [{id: 'TAS', zh: '塔什干', en: 'Tashkent'}], 
         desc: '參觀獨立廣場、乘坐藝術氣息濃厚的塔什干地鐵。遊覽巴力罕建築群、哈斯特伊瑪目清真寺、帖木兒廣場及市集。',
         mapRoute: ["Independence Square, Tashkent", "Khazrati Imam, Tashkent", "Chorsu Bazaar, Tashkent", "Amir Temur Square, Tashkent"]
       },
       { 
-        day: 3, date: '2026-10-10', title: '塔什干 🚄 布哈拉', 
+        day: 3, date: '2026-10-10', title: '塔什干🇺🇿 🚄 布哈拉🇺🇿', 
         locations: [{id: 'TAS', zh: '塔什干', en: 'Tashkent'}, {id: 'BUK', zh: '布哈拉', en: 'Bukhara'}], 
         desc: '乘高速火車 (約4小時) 前往世界文化遺產布哈拉。參觀波依卡龍建築群、雅克城堡，晚上欣賞傳統舞蹈。',
         mapRoute: ["Tashkent Railway Station", "Poi Kalyan, Bukhara", "Ark Fortress, Bukhara"]
       },
       { 
-        day: 4, date: '2026-10-11', title: '布哈拉 🚄 撒馬爾罕', 
+        day: 4, date: '2026-10-11', title: '布哈拉🇺🇿 🚄 撒馬爾罕🇺🇿', 
         locations: [{id: 'BUK', zh: '布哈拉', en: 'Bukhara'}, {id: 'SAM', zh: '撒馬爾罕', en: 'Samarkand'}], 
         desc: '參觀博洛府清真寺、中亞最古老的伊斯萬薩曼尼陵墓。隨後乘火車往「東方羅馬」撒馬爾罕，觀賞雷吉斯坦廣場夜間燈光秀。',
         mapRoute: ["Bolo Hauz Mosque, Bukhara", "Ismail Samani Mausoleum", "Registan Square, Samarkand"]
       },
       { 
-        day: 5, date: '2026-10-12', title: '撒馬爾罕 🚄 塔什干', 
+        day: 5, date: '2026-10-12', title: '撒馬爾罕🇺🇿 🚄 塔什干🇺🇿', 
         locations: [{id: 'SAM', zh: '撒馬爾罕', en: 'Samarkand'}, {id: 'TAS', zh: '塔什干', en: 'Tashkent'}], 
         desc: '遊覽雷吉斯坦廣場、古爾埃米爾陵墓、比比哈籃清真寺、兀魯伯天文台等。乘高速火車返回塔什干。',
         mapRoute: ["Gur Emir Mausoleum, Samarkand", "Bibi Khanym Mosque, Samarkand", "Shah-i-Zinda, Samarkand", "Ulugbek Observatory, Samarkand", "Tashkent Railway Station"]
       },
       { 
-        day: 6, date: '2026-10-13', title: '塔什干 ✈ 比什凱克', flight: true,
+        day: 6, date: '2026-10-13', title: '塔什干🇺🇿 ✈️ 比什凱克🇰🇬', flight: true,
         locations: [{id: 'TAS', zh: '塔什干', en: 'Tashkent'}, {id: 'BIS', zh: '比什凱克', en: 'Bishkek'}], 
         desc: '早上自由活動，午餐後飛往吉爾吉斯首都比什凱克 (飛行約1小時10分鐘)，欣賞天山山麓美景。',
         mapRoute: ["Manas International Airport, Bishkek"]
       },
       { 
-        day: 7, date: '2026-10-14', title: '比什凱克 🚌 伊塞克湖', 
+        day: 7, date: '2026-10-14', title: '比什凱克🇰🇬 🚌 伊塞克湖🇰🇬', 
         locations: [{id: 'BIS', zh: '比什凱克', en: 'Bishkek'}, {id: 'ISS', zh: '伊塞克湖', en: 'Issyk Kul'}], 
         desc: '參觀11世紀的布蘭那塔。隨後前往匯集雪山水、終年不結冰的世界第二大高山湖——伊塞克湖。',
         mapRoute: ["Bishkek", "Burana Tower, Kyrgyzstan", "Cholpon-Ata, Issyk Kul"]
       },
       { 
-        day: 8, date: '2026-10-15', title: '伊塞克湖 🚌 阿拉阿恰 🚌 比什凱克', 
+        day: 8, date: '2026-10-15', title: '伊塞克湖🇰🇬 🚌 阿拉阿恰🇰🇬 🚌 比什凱克🇰🇬', 
         locations: [{id: 'ISS', zh: '伊塞克湖', en: 'Issyk Kul'}, {id: 'BIS', zh: '比什凱克', en: 'Bishkek'}], 
         desc: '參觀佔地42公頃的露天岩石畫博物館。前往終年積雪的阿拉阿恰國家公園 (車程約5.5小時)，隨後返回比什凱克。',
         mapRoute: ["Open Air Petroglyphs, Cholpon-Ata", "Ala Archa National Park", "Bishkek"]
       },
       { 
-        day: 9, date: '2026-10-16', title: '比什凱克 🚌 阿拉木圖', 
+        day: 9, date: '2026-10-16', title: '比什凱克🇰🇬 🚌 阿拉木圖🇰🇿', 
         locations: [{id: 'BIS', zh: '比什凱克', en: 'Bishkek'}, {id: 'ALM', zh: '阿拉木圖', en: 'Almaty'}], 
         desc: '市內觀光：勝利廣場、阿拉土廣場、橡樹公園。下午乘車前往哈薩克舊都、蘋果故鄉阿拉木圖 (車程約4小時)。',
         mapRoute: ["Ala-Too Square, Bishkek", "Victory Square, Bishkek", "Almaty"]
       },
       { 
-        day: 10, date: '2026-10-17', title: '阿拉木圖 🚌 查恩峽谷 🚌 阿拉木圖', 
+        day: 10, date: '2026-10-17', title: '阿拉木圖🇰🇿 🚌 查恩峽谷🇰🇿 🚌 阿拉木圖🇰🇿', 
         locations: [{id: 'ALM', zh: '阿拉木圖', en: 'Almaty'}, {id: 'CHA', zh: '查恩峽谷', en: 'Charyn Canyon'}], 
         desc: '乘車前往壯麗的查恩峽谷 (車程約3小時)。步行探訪怪異砂岩雕塑「谷中的城堡」(約400梯級)，後返回阿拉木圖。',
         mapRoute: ["Almaty", "Charyn Canyon, Kazakhstan", "Almaty"]
       },
       { 
-        day: 11, date: '2026-10-18', title: '阿拉木圖市內 ✈️ 香港', flight: true,
+        day: 11, date: '2026-10-18', title: '阿拉木圖🇰🇿 ✈️ 香港🇭🇰', flight: true,
         locations: [{id: 'ALM', zh: '阿拉木圖', en: 'Almaty'}, {id: 'HKG', zh: '香港', en: 'Hong Kong'}], 
         desc: '參觀世界第二高木製教堂澤尼科夫教堂。乘纜車上科克托別山俯瞰全景。晚上9:50乘搭中國國際航空經北京返港。',
         mapRoute: ["Zenkov Cathedral, Almaty", "Kok Tobe, Almaty", "Almaty International Airport"]
       },
       { 
-        day: 12, date: '2026-10-19', title: '抵達香港', flight: true,
+        day: 12, date: '2026-10-19', title: '抵達香港🇭🇰', flight: true,
         locations: [{id: 'HKG', zh: '香港', en: 'Hong Kong'}], 
         desc: '上午11:50 抵達香港國際機場，結束12天中亞之旅。',
         mapRoute: ["Hong Kong International Airport"]
@@ -233,11 +233,11 @@
     ];
 
     const icons = {
-      0: '☀️', 1: '🌤️', 2: '⛅', 3: '☁️', 45: '🌫️', 48: '🌫️', 
-      51: '🌦️', 53: '🌦️', 55: '🌧️', 56: '🌧', 57: '🌧', 61: '🌧️', 
-      63: '🌧️', 65: '🌧️', 66: '🌧️', 67: '🌧', 71: '❄️', 73: '❄️', 
-      75: '❄️', 77: '❄️', 80: '🌦', 81: '🌧️️', 82: '🌧', 85: '❄️', 
-      86: '❄️', 95: '⛈️', 96: '⛈', 99: '⛈️️'
+      0: '☀️️', 1: '🌤️', 2: '⛅', 3: '☁️', 45: '🌫️', 48: '🌫️', 
+      51: '🌦️', 53: '🌦️', 55: '🌧', 56: '🌧', 57: '🌧', 61: '🌧️', 
+      63: '🌧️', 65: '🌧️️', 66: '🌧️', 67: '🌧', 71: '❄️', 73: '❄️', 
+      75: '❄️', 77: '❄️', 80: '🌦', 81: '🌧', 82: '🌧', 85: '❄️', 
+      86: '❄️', 95: '⛈️', 96: '⛈', 99: '⛈'
     };
 
     let weatherCache = {}; 
@@ -279,21 +279,18 @@
         const dateDisplay = `${dateObj.getDate()}/${dateObj.getMonth()+1}`;
 
         const tableRows = day.locations.map(loc => {
-          const flag = weatherCities[loc.id].flag;
           return `
             <tr>
               <td>
                 <div class="loc-cell">
-                  <span class="loc-flag">${flag}</span>
-                  <div class="loc-text-group">
-                    <span class="loc-zh">${loc.zh}</span>
-                    <span class="loc-en">${loc.en}</span>
-                  </div>
+                  <span class="loc-zh">${loc.zh}</span>
+                  <span class="loc-en">${loc.en}</span>
                 </div>
               </td>
               <td class="clock-cell" id="clk-${idx}-${loc.id}">--:--</td>
               <td class="w-icon-cell" id="w-icon-${idx}-${loc.id}"><span class="spinner"></span></td>
               <td class="temp-cell" id="w-temp-${idx}-${loc.id}">--</td>
+              <td class="feels-cell" id="w-feels-${idx}-${loc.id}">--</td>
               <td id="w-rain-${idx}-${loc.id}">--</td>
             </tr>
           `;
@@ -321,7 +318,8 @@
                       <th>Location</th>
                       <th>Time</th>
                       <th></th>
-                      <th>Temp / Feels</th>
+                      <th>Temp</th>
+                      <th>Feels</th>
                       <th>Rain</th>
                     </tr>
                   </thead>
@@ -411,6 +409,7 @@
             const wData = weatherCache[loc.id];
             const iEl = document.getElementById(`w-icon-${idx}-${loc.id}`);
             const tEl = document.getElementById(`w-temp-${idx}-${loc.id}`);
+            const fEl = document.getElementById(`w-feels-${idx}-${loc.id}`);
             const rEl = document.getElementById(`w-rain-${idx}-${loc.id}`);
 
             if (wData) {
@@ -424,16 +423,19 @@
                 const rain = wData.precipitation_probability_max[dateIdx];
 
                 iEl.textContent = icons[wCode] || '🌡️';
-                tEl.innerHTML = `${tMin}°~${tMax}°C<br><span style="font-size:0.75rem; color:#94a3b8;">體感 ${fMin}°~${fMax}°</span>`;
+                tEl.textContent = `${tMin}°~${tMax}°`;
+                fEl.textContent = `${fMin}°~${fMax}°`;
                 rEl.innerHTML = getRainHtml(rain);
               } else {
-                iEl.innerHTML = `<span style="font-size:0.7rem; color:#64748b;">N/A</span>`;
-                tEl.innerHTML = `<span style="font-size:0.75rem; color:#64748b;">>16天</span>`;
+                iEl.innerHTML = `<span style="font-size:0.8rem; color:#64748b;">N/A</span>`;
+                tEl.textContent = `>16天`;
+                fEl.textContent = `-`;
                 rEl.innerHTML = `-`;
               }
             } else {
               iEl.textContent = '⚠️';
-              tEl.innerHTML = `<span style="font-size:0.75rem; color:#ef4444;">Error</span>`;
+              tEl.textContent = `Error`;
+              fEl.textContent = `-`;
               rEl.innerHTML = `-`;
             }
           });
@@ -453,4 +455,3 @@
   </script>
 </body>
 </html>
-```eof
